@@ -18,7 +18,7 @@ function App() {
   async function handlerSubmitCpfCepClick (event){
     event.preventDefault(); 
     setStateErro({ temErro: false,info:"" });
-    
+
     try{
        
       if(!validateCPF(stateCpf)){
@@ -36,7 +36,11 @@ function App() {
         return;
       }
       
+      //consumir dinamicamente dados da api desse frontend
       //criar sessao do usuario
+      localStorage.setItem('session_id',stateCpf);
+      localStorage.setItem('session_nome',"felipe"); //consumir dinamicamente dados da api
+      
       //redirecionar para página administradora
       
     }catch(e){
