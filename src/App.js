@@ -15,20 +15,30 @@ function App() {
   const [stateErro,setStateErro] = useState({ temErro: false,info:'' });
 
 
-  function handlerSubmitCpfCepClick (event){
+  async function handlerSubmitCpfCepClick (event){
     event.preventDefault(); 
+    setStateErro({ temErro: false,info:"" });
+    
     try{
-      
-      console.log(process.env.REACT_APP_CUSTOM_NODE_ENV);
+       
       if(!validateCPF(stateCpf)){
         //cpf inválido
         setStateErro({ temErro: true,info:'Cpf inválido' });
         return;
       } 
     
-      Axios.get('https://viacep.com.br/ws/'+stateCep+'/json/unicode/')
-      .then(response => console.log(response.data))
-    
+      const response = await Axios.get('https://viacep.com.br/ws/'+stateCep+'/json/unicode/');
+      const {localidade} = response.data;
+
+      console.log(process.env.REACT_APP_CIDADES_ATIVAS+" -- "+localidade);
+      if(!process.env.REACT_APP_CIDADES_ATIVAS.includes(localidade)){
+        setStateErro({ temErro: true,info:"O cariri atendimento não está disponível em sua região" });
+        return;
+      }
+      
+      //criar sessao do usuario
+      //redirecionar para página administradora
+      
     }catch(e){
       setStateErro({ temErro: true,info:e.message });
     } 
@@ -71,7 +81,7 @@ function App() {
               <div className="messageBox" sm={{size:12,offset: 0 }} block>
                   { stateErro.temErro &&  
                   <Alert color="danger">
-                      { stateErro.info } 
+                      { stateErro.info }
                   </Alert>
                   }
               </div>
