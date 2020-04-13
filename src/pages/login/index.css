@@ -1,11 +1,11 @@
 .Card_main{
     background-color: #A9CDC6;
-  }
-  
-  .container_main{
+    
+}
+.container_main{
     height: 250px;
-  }
-  
-  .messageBox{
+    padding-top: 50px;
+}
+.messageBox{
     margin-top: 20px;
-  }
+}
