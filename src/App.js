@@ -6,10 +6,10 @@ import logo_full from './assets/logo_full.png';
 
 import { validate as validateCPF } from 'gerador-validador-cpf'
 import api from './services/api';
-import Axios from 'axios';
+import Axios from 'axios'; 
+ 
 
-function App() {
-  
+function App() { 
   const [stateCpf, setStateCpf] = useState('');
   const [stateCep, setStateCep] = useState('');
   const [stateErro,setStateErro] = useState({ temErro: false,info:'' });
@@ -19,7 +19,7 @@ function App() {
     event.preventDefault(); 
     try{
       
-      console.log(process.env.REACT_APP_CIDADES_DO_SISTEMA);
+      console.log(process.env.REACT_APP_CUSTOM_NODE_ENV);
       if(!validateCPF(stateCpf)){
         //cpf inválido
         setStateErro({ temErro: true,info:'Cpf inválido' });
@@ -55,8 +55,8 @@ function App() {
                       </Col>
                     </FormGroup>
                     <FormGroup row>
-                      <Col sm={12}>
-  <Badge href="http://www.buscacep.correios.com.br/sistemas/buscacep/" id="linkBuscarCep" color="secondary" target="_blank">Não sabe seu cep? {process.env.REACT_APP_CIDADES_DO_SISTEMA}</Badge> 
+                      <Col sm={12} >
+  <Badge href="http://www.buscacep.correios.com.br/sistemas/buscacep/" id="linkBuscarCep" color="secondary" target="_blank">Não sabe seu cep? {process.env.REACT_APP_CUSTOM_NODE_ENV}</Badge> 
                       </Col> 
                     </FormGroup>
                     <FormGroup row>

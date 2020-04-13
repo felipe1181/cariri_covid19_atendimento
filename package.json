@@ -17,7 +17,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:local": "env-cmd -f .env.local react-scripts start",
     "build": "react-scripts build",
+    "build:staging": "env-cmd -f .env.staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,6 +39,6 @@
     ]
   },
   "devDependencies": {
-    "react-native-dotenv": "^0.2.0"
+    "webpack-cli": "^3.3.11"
   }
 }
