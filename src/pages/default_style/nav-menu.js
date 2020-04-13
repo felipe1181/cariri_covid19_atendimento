@@ -7,18 +7,18 @@ export default function NavMenu(){
     return(
         <Container className="themed-container" fluid={true}>
             <Nav className="nav-menu-top" pills>
-                <NavItem >
-                    <NavLink className="active-link" href="#" active>Link</NavLink>
+                <NavItem>
+                    <NavLink className="active-link" href="/inicio" active><b>{process.env.REACT_APP_NAME}</b></NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">Link</NavLink>
+                    <NavLink className="link-item" href="#">Início</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">Another Link</NavLink>
-                </NavItem>
+                    <NavLink className="link-item" href="#">Atendimento</NavLink>
+                </NavItem> 
                 <NavItem>
-                    <NavLink disabled href="#">Disabled Link</NavLink>
-                </NavItem>
+                    <NavLink className="link-item" href="#">Principais dúvidas</NavLink>
+                </NavItem> 
             </Nav> 
         </Container>
     );

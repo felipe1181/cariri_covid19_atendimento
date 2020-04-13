@@ -1,3 +1,9 @@
+.container-main{ 
+    width:98.5%!important; 
+}
+.menu-nav-left,.content-data{
+    height: 95vh!important; 
+} 
 .menu-nav-left{
     background: black;
 }
