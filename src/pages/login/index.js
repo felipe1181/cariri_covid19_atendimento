@@ -1,7 +1,10 @@
 import React , { useState } from 'react';
 
 import './index.css';
-import { Card, CardBody, CardLink, Col, Button, Form, FormGroup, Input, Badge, Alert } from 'reactstrap';
+import 'antd/dist/antd.css';
+import { Layout,Form, Input, Button,Card,Row,Col,Alert,PageHeader } from 'antd'; 
+
+
 import logo_full from '../../assets/logo_full.png';
 
 import { validate as validateCPF } from 'gerador-validador-cpf'
@@ -10,12 +13,14 @@ import api from '../../services/api';
 
 
 export default function Login(){
+    const { Header, Footer, Sider, Content } = Layout;
 
     const [stateCpf, setStateCpf] = useState('');
     const [stateCep, setStateCep] = useState('');
     const [stateErro,setStateErro] = useState({ temErro: false,info:'' });
   
-  
+      
+    
     async function handlerSubmitCpfCepClick (event){
       event.preventDefault(); 
       setStateErro({ temErro: false,info:"" });
@@ -51,46 +56,76 @@ export default function Login(){
   
 
     return(
-       <>
-          <Col className="container_main" sm={{size:4,offset: 4 }} block>
-            <Card className="Card_main">
-              <CardBody> 
-                <img width="80%" src={logo_full} classname="logo" alt="logo" />
-              </CardBody> 
-              <CardBody>
-                  <Form onSubmit={handlerSubmitCpfCepClick}>
-                    <FormGroup row> 
-                      <Col sm={12}>
-                        <Input type="cpf" name="cpf" id="imputCpf" placeholder="informe seu cpf" onChange={(event) => setStateCpf(event.target.value)} />
-                      </Col>
-                    </FormGroup>
-                    <FormGroup row> 
-                      <Col sm={12}>
-                        <Input type="cep" name="cep" id="imputCep" placeholder="informe seu cep" onChange={(event) => setStateCep(event.target.value)} />
-                      </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                      <Col sm={12} >
-                          <Badge href="http://www.buscacep.correios.com.br/sistemas/buscacep/" id="linkBuscarCep" color="secondary" target="_blank">Não sabe seu cep? </Badge> 
-                      </Col> 
-                    </FormGroup>
-                    <FormGroup row>
-                      <Col sm={12}>
-                        <Button color="primary" size="lg" id="btnInformarCpfSubmit" block>Informar cpf</Button>  
-                      </Col>
-                    </FormGroup> 
-                  </Form>
-                <CardLink href="https://www.linkedin.com/in/felipe1181">Desenvolvido por felipe ferraresi</CardLink> 
-              </CardBody>
-            </Card>
-              <div className="messageBox" sm={{size:12,offset: 0 }} block>
-                  { stateErro.temErro &&  
-                  <Alert color="danger">
-                      { stateErro.info }
-                  </Alert>
-                  }
-              </div>
-          </Col>   
-        </>
+        <Layout>
+          <Header>
+            <PageHeader
+              className="site-page-header" 
+              subTitle="Software feito por Felipe Ferraresi"
+            />
+          </Header>
+            <Content>
+              <Row className="content-main">
+                <Col xs={0} sm={2} md={4} lg={6} xl={8}></Col>
+                  <Col xs={24} sm={20} md={16} lg={12} xl={8}>
+                      <Card className="loginCard" title="login card" extra={ <img width="80%" src={logo_full} classname="logo" alt="logo" />}>
+                              <Form
+                    
+                      name="basic"
+                      initialValues={{
+                        remember: true,
+                      }}
+                      
+                    >
+                      <Form.Item
+                        
+                        name="cpfImput"
+                        onChange={(event) => setStateCpf(event.target.value)}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Por favor,informe seu cpf!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Informe seu cpf" />
+                      </Form.Item>
+
+                      <Form.Item
+                        
+                        name="cepImput"
+                        onChange={(event) => setStateCep(event.target.value)}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Por favor, informe seu cep!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Informe seu Cep" />
+                      </Form.Item>
+
+                      <Button type="link" htmlType="button" onClick={()=> window.open("http://www.buscacep.correios.com.br/sistemas/buscacep/", "_blank")} block>
+                        Não sabe seu cep?
+                      </Button>
+
+                      <Form.Item>
+                        <Button  type="primary" htmlType="submit" onClick={handlerSubmitCpfCepClick}  block>
+                          Informar cpf
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                    </Card>
+                  </Col>
+                <Col xs={0} sm={2} md={4} lg={6} xl={8}></Col>
+              </Row>
+             
+            </Content>
+          <Footer>
+              { 
+                stateErro.temErro &&  
+                <Alert message={ stateErro.info } type="error" /> 
+              }
+          </Footer>
+        </Layout> 
     );
 }

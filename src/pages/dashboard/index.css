@@ -1,12 +1,3 @@
-.container-main{ 
-    width:98.5%!important; 
+.content-card-dashboard{
+    margin:50px auto;
 }
-.menu-nav-left,.content-data{
-    height: 95vh!important; 
-} 
-.menu-nav-left{
-    background: black;
-}
-.content-data{
-    background: gray;
-} 

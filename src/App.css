@@ -1,5 +1,13 @@
-.App {
-  text-align: center;
-  background-color:#CAE5E0;
-  border-bottom: solid 10px #91D3C6;
-} 
+body {
+  text-align: center;   
+}  
+Header{
+  background:#69c0ff!important;
+}
+Footer{
+  background: #feffff!important;
+}  
+.content-main{
+  background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(218,242,255,1) 0%, rgba(255,255,255,1) 100%);
+}
